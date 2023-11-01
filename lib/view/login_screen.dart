@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:login_app/provider/login_provider.dart';
-import 'package:login_app/provider/theme_provider.dart';
-import 'package:login_app/view/home_screen.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -12,6 +10,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController txtEmail = TextEditingController();
+  TextEditingController txtPassword = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -26,25 +32,29 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
-                  const TextField(
+                  TextField(
+                    controller: txtEmail,
                     keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         border: UnderlineInputBorder(),
                         labelText: 'Email',
                         hintText: "Enter valid email id",
                         filled: true),
                   ),
-                  const SizedBox(height: 20,),
-                  TextField(
-                    obscureText: true,
-                    keyboardType: TextInputType.visiblePassword,
-                    decoration: InputDecoration(
-                      border: const UnderlineInputBorder(),
-                      hintText: 'Enter secure Password',
-                      labelText: 'Password',
-                      filled: true,
-                      suffixIcon: Consumer<PasswordProvider>(
-                        builder: (context, value, child) => IconButton(
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Consumer<LoginProvider>(
+                    builder: (context, value, child) => TextField(
+                      obscureText: value.passwordVisible,
+                      controller: txtPassword,
+                      keyboardType: TextInputType.visiblePassword,
+                      decoration: InputDecoration(
+                        border: const UnderlineInputBorder(),
+                        hintText: 'Enter secure Password',
+                        labelText: 'Password',
+                        filled: true,
+                        suffixIcon: IconButton(
                           icon: Icon(value.passwordVisible
                               ? Icons.visibility
                               : Icons.visibility_off),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class PasswordProvider with ChangeNotifier {
-  bool passwordVisible = false;
+class LoginProvider with ChangeNotifier {
+  bool passwordVisible = true;
 
   void togglePassword() {
     passwordVisible = !passwordVisible;

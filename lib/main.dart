@@ -13,7 +13,7 @@ void main() {
           create: (context) => ThemeProvider(),
         ),
         ChangeNotifierProvider(
-          create: (context) => PasswordProvider(),
+          create: (context) => LoginProvider(),
         )
       ],
       child: Consumer<ThemeProvider>(

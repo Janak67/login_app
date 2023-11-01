@@ -8,6 +8,9 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  TextEditingController txtEmail = TextEditingController();
+  TextEditingController txtPassword = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,6 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 children: [
                   TextField(
+                    controller: txtEmail,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                         border: UnderlineInputBorder(
@@ -34,6 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 20,
                   ),
                   TextField(
+                    controller: txtPassword,
                     keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
                         border: UnderlineInputBorder(
@@ -66,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     child: TextButton(
                       onPressed: () {
-                        Navigator.pop(context, 'login');
+                        Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 content: Text("Registration Successfully")));
