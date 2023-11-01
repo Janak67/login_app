@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_app/provider/login_provider.dart';
 import 'package:login_app/provider/theme_provider.dart';
 import 'package:login_app/utils/app_routes.dart';
 import 'package:login_app/utils/app_theme.dart';
@@ -10,6 +11,9 @@ void main() {
       providers: [
         ChangeNotifierProvider(
           create: (context) => ThemeProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => PasswordProvider(),
         )
       ],
       child: Consumer<ThemeProvider>(
