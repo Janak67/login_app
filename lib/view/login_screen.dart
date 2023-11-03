@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_app/provider/login_provider.dart';
+import 'package:login_app/utils/share_helper.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -12,11 +13,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController txtEmail = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,8 +79,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, 'home');
+                      onPressed: () async {
+                        ShareHelper shr = ShareHelper();
+                        Map m1 = await shr.getEmailPassword();
+                        if(txtEmail.text == m1['email'] && txtPassword.text == m1['password']){
+                          shr.setLoginLogout(true);
+                          Navigator.pushNamed(context, 'home');
+                        }
+                        else{
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text("Email id and Password invalid")));
+                        }
                       },
                       child: const Text(
                         'Login',

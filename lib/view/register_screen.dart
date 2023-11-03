@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_app/utils/share_helper.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -48,18 +49,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         filled: true),
                   ),
                   const SizedBox(
-                    height: 20,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.visiblePassword,
-                    decoration: InputDecoration(
-                        border: UnderlineInputBorder(
-                            borderRadius: BorderRadius.circular(30)),
-                        labelText: 'Confirm Password',
-                        hintText: "Enter the Password",
-                        filled: true),
-                  ),
-                  const SizedBox(
                     height: 30,
                   ),
                   Container(
@@ -71,6 +60,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     child: TextButton(
                       onPressed: () {
+                        ShareHelper shr = ShareHelper();
+                        shr.setRegister(txtEmail.text, txtPassword.text);
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(

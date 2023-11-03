@@ -16,6 +16,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          title: const Text("Login App"),
+          automaticallyImplyLeading: false,
           actions: [
             Consumer<ThemeProvider>(
               builder: (context, value1, child) => Switch(
