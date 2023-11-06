@@ -24,4 +24,5 @@ class ShareHelper with ChangeNotifier {
     SharedPreferences shr = await SharedPreferences.getInstance();
     return shr.getBool("login");
   }
+
 }

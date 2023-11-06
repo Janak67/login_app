@@ -19,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
           title: const Text("Login App"),
           automaticallyImplyLeading: false,
           actions: [
+            IconButton(onPressed: (){}, icon: const Icon(Icons.logout)),
             Consumer<ThemeProvider>(
               builder: (context, value1, child) => Switch(
                 value: value1.islight,
